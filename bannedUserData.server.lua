@@ -25,3 +25,7 @@ game.Players.PlayerAdded:Connect(function(player)
         player:Kick("You have been banned!")
     end
 end)
+
+game.Players.PlayerRemoving:Connect(function(player)
+    saveBannedValue(player)
+end)
