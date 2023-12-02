@@ -1,25 +1,19 @@
 local commands = {}
 
 commands.Ban = function(targetPlayer)
-    game.Players:WaitForChild(targetPlayer):WaitForChild("BanValue").Value = true
+	game.Players:WaitForChild(targetPlayer):WaitForChild("BanValue").Value = true
+	game.Players:WaitForChild(targetPlayer):Kick("You have been banned!")
 end
 
 commands.UnBan = function(targetPlayer)
-    local dataStoreService = game:GetService("DataStoreService")
-    local bannedUserDatastore = dataStoreService:GetDataStore("BannedUsers")
+	local dataStoreService = game:GetService("DataStoreService")
+	local bannedUserDatastore = dataStoreService:GetDataStore("BannedUsers")
 
-    bannedUserDatastore:RemoveAsync(targetPlayer.UserId)
+	bannedUserDatastore:RemoveAsync(targetPlayer.UserId)
 end
 
 commands.Kick = function(targetPlayer, reason)
-    game.Players:WaitForChild(targetPlayer):Kick(reason)
-end
-
-commands.WalkSpeed = function(targetPlayer, value)
-    local character = game.Workspace.targetPlayer.Character or game.Workspace.targetPlayer.CharacterAdded:Wait()
-    local humanoid = character:WaitForChild("Humanoid")
-
-    humanoid.WalkSpeed = value
+	game.Players:WaitForChild(targetPlayer):Kick(reason)
 end
 
 return commands
